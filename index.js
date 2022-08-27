@@ -14,11 +14,6 @@ inquirer
         "Please provide a description of your project. Some questions to consider are: What was your motivation? What problem does it solve? What did you learn?",
       name: "description",
     },
-    //   {
-    //     type: "input",
-    //     message: "Where are you located?",
-    //     contents: "contents",
-    //   },
     {
       type: "input",
       message: "Can you provide us with the instructions for installation?",
@@ -29,12 +24,21 @@ inquirer
       message: "Can you describe how this program will be used?",
       name: "usage",
     },
-    // {
-    //   type: "list",
-    //   message: "Which of the following licenses does your project have?",
-    //   choices: [],
-    //   license: "license",
-    // },
+    {
+      type: "list",
+      message: "Which of the following licenses does your project have?",
+      choices: [
+        "GNU--AGPLv3",
+        "GNU--GPLv3",
+        "GNU--LGPLv3",
+        "Mozilla--2.0",
+        "Apache--2.0",
+        "MIT",
+        "Boost--Software--1.0",
+        "Unlicense",
+      ],
+      name: "license",
+    },
     {
       type: "input",
       message:
@@ -67,6 +71,7 @@ inquirer
 function createREADME(userResponses) {
   return `
 # ${userResponses.title}
+![${userResponses.license} badge](https://img.shields.io/badge/license-${userResponses.license}-brightgreen)
 
 ## Description
 
@@ -76,8 +81,7 @@ ${userResponses.description}
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
-- [Contributors](#contributors)
+- [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
 
@@ -89,10 +93,7 @@ ${userResponses.installation}
 
 ${userResponses.usage}
 
-## License
-
-
-## Contributors
+## Contributing
 
 ${userResponses.contributing}
 
